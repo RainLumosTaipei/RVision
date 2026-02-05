@@ -94,13 +94,13 @@ namespace RVision
     public:
         auto& u() { return RegisterMemoryView<Bit>(bit.data()).u();}
 
-        auto r8(size_t id = 0) { return SubReg<Bit>(id);}
-        auto r16(size_t id = 0) { return SubReg<Bit>(id);}
-        auto r32(size_t id = 0) { return SubReg<Bit>(id);}
-        auto r64(size_t id = 0) { return SubReg<Bit>(id);}
-        auto r128(size_t id = 0) { return SubReg<Bit>(id);}
-        auto r256(size_t id = 0) { return SubReg<Bit>(id);}
-        auto r512(size_t id = 0) { return SubReg<Bit>(id);}
+        BIT_GE(8) auto r8(size_t id = 0) { return SubReg<8>(id);}
+        BIT_GE(16) auto r16(size_t id = 0) { return SubReg<16>(id);}
+        BIT_GE(32) auto r32(size_t id = 0) { return SubReg<32>(id);}
+        BIT_GE(64) auto r64(size_t id = 0) { return SubReg<64>(id);}
+        BIT_GE(128) auto r128(size_t id = 0) { return SubReg<128>(id);}
+        BIT_GE(256) auto r256(size_t id = 0) { return SubReg<256>(id);}
+        BIT_GE(512) auto r512(size_t id = 0) { return SubReg<512>(id);}
 
         void print() override
         {
