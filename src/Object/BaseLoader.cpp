@@ -13,10 +13,10 @@ using namespace llvm;
 
 namespace
 {
-    std::unique_ptr<BaseLoader> createELFInfo(const ELFInfoBase& I) {
+    std::unique_ptr<BaseLoader> createELFLoader(const ELFInfoBase& I) {
         if (const auto *O = dyn_cast<ELF32LEInfo>(&I))
             return createLoader(*O);
-        if (const auto *O = dyn_cast<ELF32BEInfo>(&I))
+        if (const auto *O= dyn_cast<ELF32BEInfo>(&I))
             return createLoader(*O);
         if (const auto *O = dyn_cast<ELF64LEInfo>(&I))
             return createLoader(*O);
@@ -31,6 +31,6 @@ BaseLoader::BaseLoader(const ObjectInfo& O) : O(O)
 std::unique_ptr<BaseLoader> RVision::createLoader(const ObjectInfo& I)
 {
     if (const auto *O = dyn_cast<ELFInfoBase>(&I))
-        return createELFInfo(*O);
+        return createELFLoader(*O);
     reportFatalUsageError("Unsupport Loader");
 }

@@ -10,9 +10,8 @@
 #include "Support/Error.h"
 #include "IR/IRType.h"
 #include "IR/BaseMachineIR.h"
-#include "Object/ELFLoadInfo.h"
 #include "Object/ELFInfo.h"
-#include "Object/BaseLoader.h"
+#include "llvm/Object/ELFObjectFile.h"
 
 
 using namespace RVision;
@@ -50,7 +49,7 @@ OwningBinary<ObjectFile> RVision::createFile(llvm::StringRef FileName)
 
 
 
-ObjectInfo::ObjectInfo(const ObjectFile& O) : O(O) {}
+ObjectInfo::ObjectInfo(unsigned ID, const ObjectFile& O) : TypeID(ID), O(O) {}
 
 void ObjectInfo::disassemble()
 {
@@ -105,18 +104,6 @@ void ObjectInfo::disassemble()
 void ObjectInfo::print(llvm::raw_ostream& out) const
 {
     for (const auto& MI : MIR) MI->print(out);
-}
-
-void ObjectInfo::load() const
-{
-    Loader->alloc();
-    Loader->reloc();
-    Loader->env();
-}
-
-void ObjectInfo::free() const
-{
-    Loader->free();
 }
 
 

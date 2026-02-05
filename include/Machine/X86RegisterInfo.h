@@ -85,46 +85,46 @@ namespace RVision
         // =============================================================== //
         // x86 64-bit integer register
 
-        BIT_GE(64) auto rax() { return GPR[RAX].r64(0); }
-        BIT_GE(64) auto rbx() { return GPR[RBX].r64(0); }
-        BIT_GE(64) auto rcx() { return GPR[RCX].r64(0); }
-        BIT_GE(64) auto rdx() { return GPR[RDX].r64(0); }
-        BIT_GE(64) auto rsi() { return GPR[RSI].r64(0); }
-        BIT_GE(64) auto rdi() { return GPR[RDI].r64(0); }
-        BIT_GE(64) auto rbp() { return GPR[RBP].r64(0); }
-        BIT_GE(64) auto rsp() { return GPR[RSP].r64(0); }
-        BIT_GE(64) auto r8()  { return GPR[R8].r64(0);  }
-        BIT_GE(64) auto r9()  { return GPR[R9].r64(0);  }
-        BIT_GE(64) auto r10() { return GPR[R10].r64(0); }
-        BIT_GE(64) auto r11() { return GPR[R11].r64(0); }
-        BIT_GE(64) auto r12() { return GPR[R12].r64(0); }
-        BIT_GE(64) auto r13() { return GPR[R13].r64(0); }
-        BIT_GE(64) auto r14() { return GPR[R14].r64(0); }
-        BIT_GE(64) auto r15() { return GPR[R15].r64(0); }
+        BIT_GE(64) auto rax() { return GPR[RAX].r64(); }
+        BIT_GE(64) auto rbx() { return GPR[RBX].r64(); }
+        BIT_GE(64) auto rcx() { return GPR[RCX].r64(); }
+        BIT_GE(64) auto rdx() { return GPR[RDX].r64(); }
+        BIT_GE(64) auto rsi() { return GPR[RSI].r64(); }
+        BIT_GE(64) auto rdi() { return GPR[RDI].r64(); }
+        BIT_GE(64) auto rbp() { return GPR[RBP].r64(); }
+        BIT_GE(64) auto rsp() { return GPR[RSP].r64(); }
+        BIT_GE(64) auto r8()  { return GPR[R8].r64();  }
+        BIT_GE(64) auto r9()  { return GPR[R9].r64();  }
+        BIT_GE(64) auto r10() { return GPR[R10].r64(); }
+        BIT_GE(64) auto r11() { return GPR[R11].r64(); }
+        BIT_GE(64) auto r12() { return GPR[R12].r64(); }
+        BIT_GE(64) auto r13() { return GPR[R13].r64(); }
+        BIT_GE(64) auto r14() { return GPR[R14].r64(); }
+        BIT_GE(64) auto r15() { return GPR[R15].r64(); }
 
         // =============================================================== //
         // x86 32-bit integer register
 
-        BIT_GE(32) auto eax() { return GPR[EAX].r32(0); }
-        BIT_GE(32) auto ebx() { return GPR[EBX].r32(0); }
-        BIT_GE(32) auto ecx() { return GPR[ECX].r32(0); }
-        BIT_GE(32) auto edx() { return GPR[EDX].r32(0); }
-        BIT_GE(32) auto esi() { return GPR[ESI].r32(0); }
-        BIT_GE(32) auto edi() { return GPR[EDI].r32(0); }
-        BIT_GE(32) auto ebp() { return GPR[EBP].r32(0); }
-        BIT_GE(32) auto esp() { return GPR[ESP].r32(0); }
+        BIT_GE(32) auto eax() { return GPR[EAX].r32(); }
+        BIT_GE(32) auto ebx() { return GPR[EBX].r32(); }
+        BIT_GE(32) auto ecx() { return GPR[ECX].r32(); }
+        BIT_GE(32) auto edx() { return GPR[EDX].r32(); }
+        BIT_GE(32) auto esi() { return GPR[ESI].r32(); }
+        BIT_GE(32) auto edi() { return GPR[EDI].r32(); }
+        BIT_GE(32) auto ebp() { return GPR[EBP].r32(); }
+        BIT_GE(32) auto esp() { return GPR[ESP].r32(); }
 
         // =============================================================== //
         // x86 16-bit integer register
 
-        BIT_GE(16) auto ax() { return GPR[AX].r16(0); }
-        BIT_GE(16) auto bx() { return GPR[BX].r16(0); }
-        BIT_GE(16) auto cx() { return GPR[CX].r16(0); }
-        BIT_GE(16) auto dx() { return GPR[DX].r16(0); }
-        BIT_GE(16) auto si() { return GPR[SI].r16(0); }
-        BIT_GE(16) auto di() { return GPR[DI].r16(0); }
-        BIT_GE(16) auto bp() { return GPR[BP].r16(0); }
-        BIT_GE(16) auto sp() { return GPR[SP].r16(0); }
+        BIT_GE(16) auto ax() { return GPR[AX].r16(); }
+        BIT_GE(16) auto bx() { return GPR[BX].r16(); }
+        BIT_GE(16) auto cx() { return GPR[CX].r16(); }
+        BIT_GE(16) auto dx() { return GPR[DX].r16(); }
+        BIT_GE(16) auto si() { return GPR[SI].r16(); }
+        BIT_GE(16) auto di() { return GPR[DI].r16(); }
+        BIT_GE(16) auto bp() { return GPR[BP].r16(); }
+        BIT_GE(16) auto sp() { return GPR[SP].r16(); }
 
         // =============================================================== //
         // x86 instr pointer register
@@ -136,33 +136,33 @@ namespace RVision
         // =============================================================== //
         // x86 SSE register
 
-        BIT_GE(32) auto xmm0() { return VR[XMM0].r128(0); }
-        BIT_GE(32) auto xmm1() { return VR[XMM1].r128(0); }
-        BIT_GE(32) auto xmm2() { return VR[XMM2].r128(0); }
-        BIT_GE(32) auto xmm3() { return VR[XMM3].r128(0); }
-        BIT_GE(32) auto xmm4() { return VR[XMM4].r128(0); }
-        BIT_GE(32) auto xmm5() { return VR[XMM5].r128(0); }
-        BIT_GE(32) auto xmm6() { return VR[XMM6].r128(0); }
-        BIT_GE(32) auto xmm7() { return VR[XMM7].r128(0); }
+        BIT_GE(32) auto xmm0() { return VR[XMM0].r128(); }
+        BIT_GE(32) auto xmm1() { return VR[XMM1].r128(); }
+        BIT_GE(32) auto xmm2() { return VR[XMM2].r128(); }
+        BIT_GE(32) auto xmm3() { return VR[XMM3].r128(); }
+        BIT_GE(32) auto xmm4() { return VR[XMM4].r128(); }
+        BIT_GE(32) auto xmm5() { return VR[XMM5].r128(); }
+        BIT_GE(32) auto xmm6() { return VR[XMM6].r128(); }
+        BIT_GE(32) auto xmm7() { return VR[XMM7].r128(); }
 
-        BIT_GE(64) auto xmm8() { return VR[XMM8].r128(0); }
-        BIT_GE(64) auto xmm9() { return VR[XMM9].r128(0); }
-        BIT_GE(64) auto xmm10() { return VR[XMM10].r128(0); }
-        BIT_GE(64) auto xmm11() { return VR[XMM11].r128(0); }
-        BIT_GE(64) auto xmm12() { return VR[XMM12].r128(0); }
-        BIT_GE(64) auto xmm13() { return VR[XMM13].r128(0); }
-        BIT_GE(64) auto xmm14() { return VR[XMM14].r128(0); }
-        BIT_GE(64) auto xmm15() { return VR[XMM15].r128(0); }
+        BIT_GE(64) auto xmm8() { return VR[XMM8].r128(); }
+        BIT_GE(64) auto xmm9() { return VR[XMM9].r128(); }
+        BIT_GE(64) auto xmm10() { return VR[XMM10].r128(); }
+        BIT_GE(64) auto xmm11() { return VR[XMM11].r128(); }
+        BIT_GE(64) auto xmm12() { return VR[XMM12].r128(); }
+        BIT_GE(64) auto xmm13() { return VR[XMM13].r128(); }
+        BIT_GE(64) auto xmm14() { return VR[XMM14].r128(); }
+        BIT_GE(64) auto xmm15() { return VR[XMM15].r128(); }
 
-        BIT_GE(32) auto ymm0() { return VR[YMM0].r256(0); }
-        BIT_GE(32) auto ymm1() { return VR[YMM1].r256(0); }
-        BIT_GE(32) auto ymm2() { return VR[YMM2].r256(0); }
-        BIT_GE(32) auto ymm3() { return VR[YMM3].r256(0); }
+        BIT_GE(32) auto ymm0() { return VR[YMM0].r256(); }
+        BIT_GE(32) auto ymm1() { return VR[YMM1].r256(); }
+        BIT_GE(32) auto ymm2() { return VR[YMM2].r256(); }
+        BIT_GE(32) auto ymm3() { return VR[YMM3].r256(); }
 
-        BIT_GE(64) auto ymm4() { return VR[YMM4].r256(0); }
-        BIT_GE(64) auto ymm5() { return VR[YMM5].r256(0); }
-        BIT_GE(64) auto ymm6() { return VR[YMM6].r256(0); }
-        BIT_GE(64) auto ymm7() { return VR[YMM7].r256(0); }
+        BIT_GE(64) auto ymm4() { return VR[YMM4].r256(); }
+        BIT_GE(64) auto ymm5() { return VR[YMM5].r256(); }
+        BIT_GE(64) auto ymm6() { return VR[YMM6].r256(); }
+        BIT_GE(64) auto ymm7() { return VR[YMM7].r256(); }
 
         BIT_GE(32) auto& zmm0() { return VR[ZMM0]; }
         BIT_GE(32) auto& zmm1() { return VR[ZMM1]; }

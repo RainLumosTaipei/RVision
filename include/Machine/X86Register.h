@@ -10,15 +10,35 @@
 #include <array>
 #include <string>
 #include "Machine/BaseRegister.h"
+#include <llvm/Support/Debug.h>
+#include <llvm/Support/Format.h>
+#include <llvm/Support/raw_ostream.h>
 #include <llvm/ADT/STLForwardCompat.h>
 
-// 保留原有宏定义（无需修改）
-#define BIT_GE(BIT) template<std::size_t B = Bit> std::enable_if_t<(B >= BIT), void> = nullptr
+#define BIT(n, op) template<std::size_t B = Bit, std::enable_if_t<(B op n), bool> = true>
+#define BIT_GE(n) BIT(n, >=)
+#define BIT_EQ(n) BIT(n, ==)
+#define BIT_LE(n) BIT(n, <=)
 
-#define BIT_EQ(BIT) template<std::size_t B = Bit> std::enable_if_t<(B == BIT), bool> = true
+namespace llvm
+{
+    class raw_ostream;
+}
 
 namespace RVision
 {
+    template<std::size_t Bit>
+    class X86Register;
+
+    template <std::size_t Bit>
+    llvm::raw_ostream& operator<<(llvm::raw_ostream& os, X86Register<Bit>& Reg)
+    {
+        if constexpr (!X86Register<Bit>::isArrayTy) {
+            return os << llvm::left_justify(Reg.str(), 20);
+        }
+        return os;
+    }
+
     template <std::size_t Bit>
     class RegisterMemoryView {
         std::byte* P;
@@ -40,15 +60,19 @@ namespace RVision
         auto& i(){ return *reinterpret_cast<ITy*>(P);}
 
     public:
-        auto& u() { return u<Bit>(P); }
-        auto& i() { return i<Bit>(P); }
+        BIT_EQ(8)  auto& u() { return u<uint8_t>(); }
+        BIT_EQ(16) auto& u() { return u<uint16_t>(); }
+        BIT_EQ(32) auto& u() { return u<uint32_t>(); }
+        BIT_EQ(64) auto& u() { return u<uint64_t>(); }
 
+        BIT_EQ(128) auto& u() { return u<uint64_t[2]>(); }
+        BIT_EQ(256) auto& u() { return u<uint64_t[4]>(); }
+        BIT_EQ(512) auto& u() { return u<uint64_t[8]>(); }
     };
-
 
     template<std::size_t Bit>
     class X86Register : public BaseRegister{
-    protected:
+    public:
         static constexpr std::size_t Byte = Bit / 8;
         static constexpr bool isArrayTy =
             std::is_array_v<llvm::remove_cvref_t<decltype(std::declval<X86Register>().u())>>;
@@ -68,12 +92,32 @@ namespace RVision
         }
 
     public:
-        void print() override;
-        std::string str() override;
+        auto& u() { return RegisterMemoryView<Bit>(bit.data()).u();}
 
-        auto& u() {return RegisterMemoryView<Bit>(bit.data()).u();}
-        auto& i() {return RegisterMemoryView<Bit>(bit.data()).i();}
+        auto r8(size_t id = 0) { return SubReg<Bit>(id);}
+        auto r16(size_t id = 0) { return SubReg<Bit>(id);}
+        auto r32(size_t id = 0) { return SubReg<Bit>(id);}
+        auto r64(size_t id = 0) { return SubReg<Bit>(id);}
+        auto r128(size_t id = 0) { return SubReg<Bit>(id);}
+        auto r256(size_t id = 0) { return SubReg<Bit>(id);}
+        auto r512(size_t id = 0) { return SubReg<Bit>(id);}
 
+        void print() override
+        {
+            if constexpr (!isArrayTy) {
+                llvm::dbgs() << llvm::format_hex(u(), Bit/4);
+            }
+        }
+
+        std::string str() override
+        {
+            std::string s;
+            llvm::raw_string_ostream os(s);
+            if constexpr (!isArrayTy){
+                os << llvm::format_hex(u(), 0);
+            }
+            return os.str();
+        }
     };
 
     template<std::size_t Bit>
