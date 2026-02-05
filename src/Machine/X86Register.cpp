@@ -37,7 +37,6 @@ namespace RVision
     raw_ostream& operator<<(raw_ostream& os, X86Register<Bit>& Reg)
     {
         if constexpr (!X86Register<Bit>::isArrayTy) {
-            //return os << format_hex(Reg.u(), Bit/4 + 2);
             return os << left_justify(Reg.str(), 20);
         }
         return os;
